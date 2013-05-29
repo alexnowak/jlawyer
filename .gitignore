@@ -1,0 +1,17 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Backups and logs
+*.bak
+*.log 
+
+# Generated dirs
+dist/
+build/
+
+# JavaDB temp files
+*.lck
