@@ -76,10 +76,10 @@
                                     </ComboBox>
                                     <Label layoutX="182.0" layoutY="60.0" text="Vermittlung" />
                                     <Label layoutX="381.0" layoutY="60.0" prefWidth="107.0" text="Gegenstandswert" />
-                                    <TextField layoutX="381.0" layoutY="76.0" prefWidth="102.0" />
+                                    <TextField fx:id="value" layoutX="381.0" layoutY="76.0" prefWidth="102.0" promptText="Wert" text="" />
                                     <Label layoutX="503.0" layoutY="60.0" prefWidth="107.0" text="Aktenzeichen" />
-                                    <TextField layoutX="504.0" layoutY="76.0" prefWidth="102.0" />
-                                    <Button fx:id="button" layoutX="669.0" layoutY="76.0" onAction="#handleButtonAction" text="Add" />
+                                    <TextField fx:id="aktenzeichen" layoutX="504.0" layoutY="76.0" prefWidth="102.0" promptText="Aktenzeichen" />
+                                    <Button id="button" fx:id="addButton" layoutX="669.0" layoutY="76.0" onAction="#handleButtonAction" text="Add" />
                                     <Label labelFor="$label" layoutX="656.0" layoutY="30.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="69.0" text="Click to Add new record" wrapText="true" />
                                   </children>
                                 </AnchorPane>
@@ -112,7 +112,7 @@
                     <TableColumn prefWidth="75.0" text="Angelegenheit" fx:id="colFile" />
                     <TableColumn prefWidth="75.0" text="Vermittlung" fx:id="colRecommndedBy" />
                     <TableColumn prefWidth="75.0" text="Akte" fx:id="colCaseDesc" />
-                    <TableColumn prefWidth="75.0" text="Gegentandswert" />
+                    <TableColumn prefWidth="75.0" text="Gegenstandswert" />
                     <TableColumn prefWidth="75.0" text="Aktenzeichen" fx:id="colFileNumber" />
                   </columns>
                 </TableView>

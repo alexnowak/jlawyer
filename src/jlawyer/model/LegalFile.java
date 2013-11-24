@@ -20,6 +20,7 @@ public class LegalFile {
     private SimpleStringProperty fileNumber;
     private SimpleStringProperty recommendedBy;
     private SimpleStringProperty caseDesc;
+    private SimpleStringProperty caseValue;
 
     /**
      * Constructor for LegalFile will all data base data
@@ -30,9 +31,10 @@ public class LegalFile {
      * @param fileNumber Document file number
      * @param recommendedBy Name of referrer
      * @param caseDesc Case description
+     * @param caseValue Value of the case
      */
     public LegalFile(long id, String mandate,String client,String file,String fileNumber,
-            String recommendedBy, String caseDesc) {
+            String recommendedBy, String caseDesc, String caseValue) {
         this.id             = new SimpleLongProperty(id);
         this.mandate        = new SimpleStringProperty(mandate);
         this.client         = new SimpleStringProperty(client);
@@ -40,6 +42,7 @@ public class LegalFile {
         this.fileNumber     = new SimpleStringProperty(fileNumber);
         this.recommendedBy  = new SimpleStringProperty(recommendedBy);
         this.caseDesc       = new SimpleStringProperty(caseDesc);
+        this.caseValue       = new SimpleStringProperty(caseValue);
     }
     
     public long getId() {

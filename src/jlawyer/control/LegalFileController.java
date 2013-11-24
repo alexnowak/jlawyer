@@ -43,7 +43,8 @@ public class LegalFileController {
                             rs.getString("FILE"),
                             rs.getString("FILENUMBER"),
                             rs.getString("RECOMMENDEDBY"),
-                            rs.getString("CASEDESC")
+                            rs.getString("CASEDESC"),
+                            "123.123"
                             );
                     System.out.println("["+n+"] "+file);
                     legalFileTableData.add(file);
@@ -65,5 +66,17 @@ public class LegalFileController {
            */
         return legalFileTableData;
     }
-       
+
+       public static int getNextId() throws SQLException {
+           PreparedStatement lastRec = JDBDatabase.getInstance().getConnection().prepareStatement("select ID from LegalFile order by ID desc limit 1;");
+           ResultSet rs = lastRec.executeQuery();
+           if (!rs.last()) {
+               JOptionPane.showMessageDialog(null,"Error retrieving last row of LegalFiles table:\n",
+                       "MyError", JOptionPane.ERROR_MESSAGE);
+               throw new SQLException("Error retrieving last row of LegalFiles table");
+           }
+           int lastId = rs.getInt("ID");
+           System.out.println("Last ID in LegalFile tab: "+lastId);
+           return lastId+1;
+       }       
 }

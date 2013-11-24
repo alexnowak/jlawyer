@@ -5,6 +5,7 @@
 package jlawyer;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import jlawyer.control.LegalFileController;
 import jlawyer.model.LegalFile;
@@ -37,8 +39,8 @@ public class JLawyerMainController implements Initializable {
     @FXML //  fx:id="Vermittlung"
     private ComboBox<String> vermittlung; // Value injected by FXMLLoader
 
-    @FXML //  fx:id="button"
-    private Button button; // Value injected by FXMLLoader
+    @FXML //  fx:id="addButton"
+    private Button addButton; // Value injected by FXMLLoader
 
     @FXML //  fx:id="label"
     private Label label; // Value injected by FXMLLoader
@@ -58,10 +60,14 @@ public class JLawyerMainController implements Initializable {
     private TableColumn<LegalFile,String> colCaseDesc; // Value injected by FXMLLoader
     @FXML //  fx:id="colFileNumber"
     private TableColumn<LegalFile,String> colFileNumber; // Value injected by FXMLLoader
-    
+   
+    @FXML //  fx:id="aktenzeichen"
+    private TextField aktenzeichen; // Value injected by FXMLLoader
 
+    @FXML //  fx:id="value"
+    private TextField value;    // Value injected by FXMLLoader
 
-    // Handler for Button[fx:id="button"] onAction
+    // Handler for Button[fx:id="addButton"] onAction
     public void handleButtonAction(ActionEvent event) {
         System.out.println("Button clicked.");
         
@@ -71,6 +77,43 @@ public class JLawyerMainController implements Initializable {
         System.out.println("Mandant: " + ((valMandant == null || valMandant.isEmpty()) ? "NOT SET" : valMandant));
         String valVermittlung = vermittlung.getValue();
         System.out.println("Vermittlung: " + ((valVermittlung == null || valVermittlung.isEmpty()) ? "NOT SET" : valVermittlung));
+        String valAkte = akte.getValue();
+        System.out.println("Akte: " + ((valAkte == null || valAkte.isEmpty()) ? "NOT SET" : valAkte));
+        String valValue = value.getText().trim();
+        System.out.println("Gegenstandswert: " + ((valValue == null || valValue.isEmpty()) ? "NOT SET" : valValue));
+        String valAktenZeichen = aktenzeichen.getText().trim();
+        System.out.println("AktenZeichen: " + ((valAktenZeichen == null || valAktenZeichen.isEmpty()) ? "NOT SET" : valAktenZeichen));
+
+        if ( (valMandat == null || valMandat.isEmpty()) ||
+             (valMandant == null || valMandant.isEmpty()) ||
+             (valVermittlung == null || valVermittlung.isEmpty()) ||
+             (valAkte == null || valAkte.isEmpty()) ||
+             (valValue == null || valValue.isEmpty()) ||
+             (valAktenZeichen == null || valAktenZeichen.isEmpty())
+             ) {
+            System.out.print("Duh, all fields must have values...!!!");
+            return;
+        } 
+    
+        System.out.println("Adding new record...");
+        
+        try {
+            LegalFile legalFile = new LegalFile(LegalFileController.getNextId(),valMandat,valMandant,"File 123","File123",valVermittlung,valAkte,valValue);
+        } catch (SQLException e) {
+            System.out.println("Exception: "+e.getMessage());
+            e.printStackTrace();
+        }
+
+     /* @param mandate Mandate
+     * @param client Client
+     * @param file Document file
+     * @param fileNumber Document file number
+     * @param recommendedBy Name of referrer
+     * @param caseDesc Case description
+     * @param caseValue Value of the case
+     * */
+
+    
     }
 
     // Handler for ComboBox[fx:id="mandant"] onAction
@@ -91,8 +134,9 @@ public class JLawyerMainController implements Initializable {
         assert mandant != null : "fx:id=\"mandant\" was not injected: check your FXML file 'JLawyerMain.fxml'.";
         assert mandat != null : "fx:id=\"mandat\" was not injected: check your FXML file 'JLawyerMain.fxml'.";
         assert vermittlung != null : "fx:id=\"vermittlung\" was not injected: check your FXML file 'JLawyerMain.fxml'.";
-        assert button != null : "fx:id=\"button\" was not injected: check your FXML file 'JLawyerMain.fxml'.";
-        assert label != null : "fx:id=\"label\" was not injected: check your FXML file 'JLawyerMain.fxml'.";
+        assert addButton != null : "fx:id=\"addButton\" was not injected: check your FXML file 'JLawyerMain.fxml'.";
+        assert value != null : "fx:id=\"value\" was not injected: check your FXML file 'JLawyerMain.fxml'.";
+        assert aktenzeichen != null : "fx:id=\"aktenzeichen\" was not injected: check your FXML file 'JLawyerMain.fxml'.";
         
         ObservableList<String> mandatList = FXCollections.observableArrayList(
                 "Mandat 1",
