@@ -1,7 +1,7 @@
 *.class
 
 # Netbeans files #
-netbeans/
+nbproject/
 
 # Package Files #
 *.jar
