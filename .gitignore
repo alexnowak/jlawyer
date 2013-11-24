@@ -1,5 +1,8 @@
 *.class
 
+# Netbeans files #
+netbeans/
+
 # Package Files #
 *.jar
 *.war
@@ -7,11 +10,12 @@
 
 # Backups and logs
 *.bak
-*.log 
+*.log
 
 # Generated dirs
 dist/
 build/
 
-# JavaDB temp files
+# JavaDB files
+*.jdb
 *.lck
